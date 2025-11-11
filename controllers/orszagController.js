@@ -42,7 +42,7 @@ exports.getById = async (req, res) => {
 exports.filterOrszagok = async (req, res) => {
   try {
     const { regio, kodReszlet } = req.query; // pl. /api/orszagok/szures?regio=Europa&kodReszlet=E
-    const orszagok = await Orszag.filter({ regio, kodReszlet });
+    const orszagok = await Orszag.filterOrszagok({ regio, kodReszlet });
     res.json(orszagok);
   } catch (err) {
     console.error(err);

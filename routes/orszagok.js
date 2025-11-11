@@ -4,8 +4,9 @@ const orszagController = require('../controllers/orszagController');
 
 router.get('/', orszagController.getAllOrszagok);
 router.get('/regio/:regio', orszagController.getByRegion);
-router.get('/:id', orszagController.getById);
 router.get('/szures', orszagController.filterOrszagok);
+router.get('/:id', orszagController.getById);
+
 
 
 module.exports = router;

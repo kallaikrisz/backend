@@ -30,7 +30,7 @@ class Orszag {
     }
   }
     // Több szűrési feltétellel
-  static async filter({ regio, kodReszlet }) {
+  static async filterOrszagok({ regio, kodReszlet }) {
     let sql = 'SELECT * FROM orszagok WHERE 1=1';
     const params = [];
 
