@@ -49,3 +49,15 @@ exports.filterOrszagok = async (req, res) => {
     res.status(500).json({ error: 'Hiba történt a szűrés során' });
   }
 };
+// http://localhost:8080/orszagok/paged?page=2&limit=10&sortBy=nev&order=asc
+exports.getPagedOrszagok = async (req, res) => {
+  try {
+    const { page, limit, sortBy, order } = req.query;
+    const result = await Orszag.getPagedOrszagok({ page, limit, sortBy, order });
+    res.json(result);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Hiba történt a lapozott lekérés során' });
+  }
+};
+
