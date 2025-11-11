@@ -1,10 +1,11 @@
-const db = require('../config/db');
+//const db = require('../config/db');
+const { adminPool } = require('../config/db');
 
 class Orszag {
   // Összes ország lekérése
   static async getAll() {
     try {
-      const [rows] = await db.query('SELECT * FROM orszagok');
+      const [rows] = await adminPool.query('SELECT * FROM orszagok');
       return rows;
     } catch (err) {
       throw err; // hibát a controller kezeli
@@ -14,7 +15,7 @@ class Orszag {
   // Régió alapján szűrés
   static async getByRegion(regio) {
     try {
-      const [rows] = await db.query('SELECT * FROM orszagok WHERE regio = ?', [regio]);
+      const [rows] = await adminPool.query('SELECT * FROM orszagok WHERE regio = ?', [regio]);
       return rows;
     } catch (err) {
       throw err;
@@ -23,7 +24,7 @@ class Orszag {
     // Id alapján szűrés
   static async getById(id) {
     try {
-      const [rows] = await db.query('SELECT * FROM orszagok WHERE id = ?', [id]);
+      const [rows] = await adminPool.query('SELECT * FROM orszagok WHERE id = ?', [id]);
       return rows;
     } catch (err) {
       throw err;
@@ -44,7 +45,7 @@ class Orszag {
       params.push(`%${kodReszlet}%`);
     }
 
-    const [rows] = await db.query(sql, params);
+    const [rows] = await adminPool.query(sql, params);
     return rows;
   }
   // Lapozott és rendezett lekérés
@@ -61,10 +62,10 @@ static async getPagedOrszagok({ page = 1, limit = 10, sortBy = 'id', order = 'as
     ORDER BY ${sortField} ${sortOrder}
     LIMIT ? OFFSET ?
   `;
-  const [rows] = await db.query(sql, [Number(limit), Number(offset)]);
+  const [rows] = await adminPool.query(sql, [Number(limit), Number(offset)]);
 
   // Összes rekord megszámolása, hogy vissza lehessen adni a lapozás információit
-  const [countRows] = await db.query('SELECT COUNT(*) AS total FROM orszagok');
+  const [countRows] = await adminPool.query('SELECT COUNT(*) AS total FROM orszagok');
   const total = countRows[0].total;
 
   return {

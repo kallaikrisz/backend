@@ -1,4 +1,4 @@
-const Orszag = require('../models/Orszag');
+const Orszag = require('../models/AdminOrszag');
 
 //http://localhost:8080/orszagok
 exports.getAllOrszagok = async (req, res) => {
@@ -41,7 +41,7 @@ exports.getById = async (req, res) => {
 //http://localhost:8080/orszagok/szures?regio=Europa&kodReszlet=E
 exports.filterOrszagok = async (req, res) => {
   try {
-    const { regio, kodReszlet } = req.query; // pl. /api/orszagok/szures?regio=Europa&kodReszlet=E
+    const { regio, kodReszlet } = req.query;
     const orszagok = await Orszag.filterOrszagok({ regio, kodReszlet });
     res.json(orszagok);
   } catch (err) {
