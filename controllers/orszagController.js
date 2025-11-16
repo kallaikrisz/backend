@@ -24,7 +24,7 @@ exports.getByRegion = async (req, res) => {
 //http://localhost:8080/orszagok/7
 exports.getById = async (req, res) => {
   try {
-    const { id } = req.params; // pl. /orszagok/5
+    const { id } = req.params;
     const orszagok = await Orszag.getById(id);
 
     if (!orszagok) {
@@ -41,7 +41,7 @@ exports.getById = async (req, res) => {
 //http://localhost:8080/orszagok/szures?regio=Europa&kodReszlet=E
 exports.filterOrszagok = async (req, res) => {
   try {
-    const { regio, kodReszlet } = req.query; // pl. /api/orszagok/szures?regio=Europa&kodReszlet=E
+    const { regio, kodReszlet } = req.query;
     const orszagok = await Orszag.filterOrszagok({ regio, kodReszlet });
     res.json(orszagok);
   } catch (err) {

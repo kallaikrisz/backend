@@ -1,0 +1,10 @@
+### Publikus végpont
+GET http://localhost:8080/orszagok
+
+### Regisztrált felhasználó
+GET http://localhost:8080/orszagok/protected/list
+Authorization: Bearer <registered_token>
+
+### Admin
+GET http://localhost:8080/orszagok/protected/admin
+Authorization: Bearer <admin_token>
