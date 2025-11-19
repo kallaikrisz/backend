@@ -24,7 +24,7 @@ exports.getByRegion = async (req, res) => {
 //http://localhost:8080/orszagok/7
 exports.getById = async (req, res) => {
   try {
-    const { id } = req.params; // pl. /orszagok/5
+    const { id } = req.params;
     const orszagok = await Orszag.getById(id);
 
     if (!orszagok) {
